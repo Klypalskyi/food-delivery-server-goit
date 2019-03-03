@@ -1,13 +1,14 @@
-const fs = require('fs');
-const path = require('path');
+// const fs = require('fs');
+// const path = require('path');
 
 
-const productRouter = (req, res) => {
-    const allProdPath = path.join(__dirname, "../../db/products/all-products.json");
-    res.writeHead(200, {"Content-Type": "application/json"});
-    const readStream = fs.createReadStream(allProdPath);
+// const productRouter = (req, res) => {
 
-    readStream.pipe(res)
-}
+//     const allProdPath = path.join(__dirname, "../../db/products/all-products.json");
+//     res.writeHead(200, {"Content-Type": "application/json"});
+//     const readStream = fs.createReadStream(allProdPath);
 
-module.exports = productRouter
+//     readStream.pipe(res)
+// }
+
+// module.exports = productRouter
