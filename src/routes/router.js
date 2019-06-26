@@ -5,7 +5,6 @@ debugger
 const router = {
     '/signup': signUpRouter,
     '/products': handleProductsRoute,
-    '/products/': handleProductsRoute,
     '/': mainRoute,
     default: mainRoute
 }
