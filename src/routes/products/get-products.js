@@ -3,23 +3,12 @@ const path = require("path");
 const fs = require("fs");
 const querystring = require("querystring");
 
-const isNumId = x => {
-    if (!/\d/i.test(x)) {
-        return true;
-    } else {
-        return false;
-    }
-};
-
 const getProductId = url => {
     const lastIndex = url.lastIndexOf("/");
     let id;
     let slice = url.slice(lastIndex + 1);
-    if (isNumId(slice)) return id;
+    if (typeof (+slice) === "number") return id = +slice;
     else return slice;
-    // console.log(lastIndex + 1);
-    // let id = Number(url.slice(lastIndex + 1));
-    // ;
 };
 
 const getProductRouter = (req, res) => {
@@ -34,7 +23,6 @@ const getProductRouter = (req, res) => {
     const id = getProductId(parsedUrl.path);
 
     const qs = querystring.parse(parsedUrl.query);
-    // console.log(qs);
 
     if (qs.category) {
         const productByCategory = products.filter(
@@ -78,7 +66,7 @@ const getProductRouter = (req, res) => {
         });
         res.write(getProductsByIdsJSON);
         res.end();
-    } else if (!Number.isNaN(id) && typeof id === "number") {
+    } else if (!Number.isNaN(id) && typeof(id) === "number") {
         const getProductById = products.find(product => product.id === id);
         const getProductByIdJSON =
             getProductById !== undefined

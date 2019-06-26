@@ -5,9 +5,11 @@ const getClearUrl = url => {
 
     if (idNumber && lastIndex !== -1) {
         return url.slice(0, lastIndex);
+    } else if (lastIndex > 0){
+        return url.slice(0, lastIndex);
     }
 
-    return url;
+   
 };
 
 
