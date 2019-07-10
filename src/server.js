@@ -4,7 +4,6 @@ const fs = require('fs');
 const morgan = require('morgan')
 const path = require('path');
 const router = require('./routes/router');
-const getRouteHandler = require('./routes/get-route-handler')
 
 const logger = morgan('combined');
 
@@ -21,7 +20,7 @@ const startServer = port => {
 
         const urlParsed = url.parse(req.url);
         
-        const func = getRouteHandler(router, urlParsed.pathname) || router.default;
+        const func = router[urlParsed.pathname] || router.default
 
         logger(req, res, () => func(req, res));
     });
