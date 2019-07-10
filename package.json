@@ -4,8 +4,8 @@
   "description": "food-delivery-study-project",
   "main": "index.js",
   "scripts": {
-    "start": "supervisor index.js",
-    "test": "node --inspect index.js"
+    "start": "nodemon index.js",
+    "test": "nodemon --inspect index.js"
   },
   "repository": {
     "type": "git",
