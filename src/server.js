@@ -1,5 +1,6 @@
 const https = require('https');
 const url = require('url');
+
 const fs = require('fs');
 const path = require('path');
 const router = require('./routes/router');
@@ -11,8 +12,6 @@ const optionsSSL = {
     cert: fs.readFileSync(certPath),
     key: fs.readFileSync(keyPath)
 }
-
-
 
 const startServer = port => {
     const server = https.createServer(optionsSSL, function (req, res) {
