@@ -23,7 +23,9 @@ const getProductRouter = (req, res) => {
     const id = getProductId(parsedUrl.path);
 
     const qs = querystring.parse(parsedUrl.query);
-
+    if (qs.category.includes('"')) {
+        qs.category = qs.category.replace(/["]+/g, '')
+    }
     if (qs.category) {
         const productByCategory = products.filter(
             product => product.categories[0] === qs.category
