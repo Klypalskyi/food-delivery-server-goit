@@ -1,28 +1,18 @@
-const https = require('https');
+const http = require('http');
 const url = require('url');
-const fs = require('fs');
-const morgan = require('morgan')
-const path = require('path');
 const router = require('./routes/router');
-const logger = morgan('combined');
-
-const keyPath = path.join(__dirname, "sert/key-20190213-131624.pem");
-const certPath =path.join(__dirname, "sert/cert-20190213-131624.crt")
-
-const optionsSSL = {
-    cert: fs.readFileSync(certPath),
-    key: fs.readFileSync(keyPath)
-}
+const getRouteHandler = require('./routes/get-route-handler')
 
 const startServer = port => {
-    const server = https.createServer(optionsSSL, function(req, res) {
+    const server = http.createServer(function (req, res) {
 
-        const urlParsed = url.parse(req.url);   
-        const func = router[urlParsed.pathname] || router.default;
+        const urlParsed = url.parse(req.url);
+        
+        const func = getRouteHandler(router, urlParsed.pathname) || router.default;
 
-        logger(req, res, () => func(req, res));
+        func(req, res)
     });
-    
+
     server.listen(port);
 };
 

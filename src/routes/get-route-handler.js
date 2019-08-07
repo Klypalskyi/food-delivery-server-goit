@@ -7,7 +7,7 @@ const getClearUrl = url => {
         return url.slice(0, lastIndex);
     } else if (lastIndex > 0){
         return url.slice(0, lastIndex);
-    }
+    } else return url
 
    
 };
