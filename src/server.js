@@ -4,14 +4,16 @@ const router = require('./routes/router');
 const getRouteHandler = require('./routes/get-route-handler')
 
 const startServer = port => {
-    const server = http.createServer(function (req, res) {
+    const server = http.createServer(
+        function (req, res) {
 
-        const urlParsed = url.parse(req.url);
-        
-        const func = getRouteHandler(router, urlParsed.pathname) || router.default;
+            const urlParsed = url.parse(req.url);
 
-        func(req, res)
-    });
+            const func = getRouteHandler(router, urlParsed.pathname) || router.default;
+
+            func(req, res)
+        }
+    );
 
     server.listen(port);
 };
