@@ -23,10 +23,6 @@ const checkUserFields = user => {
         typeof userEmail === "string")
         return true
     else return false
-    // console.log(typeof userName === "string");
-    // console.log(!isNaN(Number(userPhone)));
-    // console.log(typeof userPass === "string");
-    // console.log(typeof userEmail === "string");
 }
 
 const signUpRouter = (req, res) => {
