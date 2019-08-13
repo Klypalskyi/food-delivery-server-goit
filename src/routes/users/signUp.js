@@ -49,7 +49,8 @@ const signUpRouter = (req, res) => {
                     res.writeHead(200, {
                         "Content-type": "application/json"
                     });
-                    res.end(JSON.stringify(finRes));
+                    res.write(JSON.stringify(finRes));
+                    res.end();
                 } else {
                     const finRes = {
                         status: 'error',
@@ -59,7 +60,8 @@ const signUpRouter = (req, res) => {
                     res.writeHead(403, {
                         "Content-type": "application/json"
                     });
-                    res.end(JSON.stringify(finRes));
+                    res.write(JSON.stringify(finRes));
+                    res.end();
                 }
 
 
