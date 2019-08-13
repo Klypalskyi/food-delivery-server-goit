@@ -21,12 +21,15 @@ const getProductRouter = (req, res) => {
     const products = JSON.parse(productsFS);
     const parsedUrl = url.parse(req.url);
     const id = getProductId(parsedUrl.path);
-
     const qs = querystring.parse(parsedUrl.query);
 
     if (qs.category) {
+        qs.category = qs.category.replace(/["]+/g, '')
+    }
+
+    if (qs.category) {
         const productByCategory = products.filter(
-            product => product.categories[0] === qs.category
+            product => product.categories.includes(qs.category)
         );
 
         const productByCategoryJson =
@@ -46,7 +49,7 @@ const getProductRouter = (req, res) => {
         res.write(productByCategoryJson);
         res.end();
     } else if (qs.ids) {
-        const ids = qs.ids.split(",").map(product => Number(product));
+        const ids = qs.ids.split(",").map(id => Number(id));
         const getProductsByIds = products.filter(product =>
             ids.includes(product.id)
         );
@@ -66,7 +69,7 @@ const getProductRouter = (req, res) => {
         });
         res.write(getProductsByIdsJSON);
         res.end();
-    } else if (!Number.isNaN(id) && typeof(id) === "number") {
+    } else if (!Number.isNaN(id) && typeof (id) === "number") {
         const getProductById = products.find(product => product.id === id);
         const getProductByIdJSON =
             getProductById !== undefined
