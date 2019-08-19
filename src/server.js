@@ -1,21 +1,24 @@
-const bodyParser = require('body-parser')
 const app = require('./modules/app')
+const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const router = require('./routes/router');
+const cors = require('cors');
 
 const errorHandler = (req, res, next) => {
-    res.status(500).send('No such page');
+    res.status(400).send('No such page');
     next();
 };
 
 const startServer = port => {
+    
     app
-        .use(bodyParser.urlencoded({extended: false}))
+        .use(bodyParser.urlencoded({ extended: false }))
         .use(bodyParser.json())
+        // .use(cors)
         .use(morgan('dev'))
-        .use('/', router)
-        .use(errorHandler);
-
+        .use(router)
+        .use(errorHandler)
+     
     app.listen(port);
 
     console.log('Server is on ' + port);

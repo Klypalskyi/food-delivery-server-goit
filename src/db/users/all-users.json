@@ -1,0 +1,26 @@
+[
+  {
+    "username": "Mikhailo",
+    "telephone": "063 249 77 12",
+    "password": "123456",
+    "email": "klyaplskyi@gmail.com",
+    "id": 1,
+    "ordersPath": "F:\\GitHub\\food-delivery-server-goit\\src\\db\\users\\Mikhailo\\orders"
+  },
+  {
+    "username": "Kira",
+    "telephone": "1234568",
+    "password": "78966554",
+    "email": "klyaplskyi@gmail.com",
+    "id": 2,
+    "ordersPath": "F:\\GitHub\\food-delivery-server-goit\\src\\db\\users\\Kira\\orders"
+  },
+  {
+    "username": "Ivan",
+    "telephone": "063 777 77 77",
+    "password": "12345",
+    "email": "ivan@gmail.com",
+    "id": 3,
+    "ordersPath": "F:\\GitHub\\food-delivery-server-goit\\src\\db\\users\\Ivan\\orders"
+  }
+]

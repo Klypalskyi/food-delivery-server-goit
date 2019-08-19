@@ -23,10 +23,10 @@
     "connect-multiparty": "^2.2.0",
     "form-data": "^2.3.2",
     "morgan": "^1.9.1",
-    "nodemon": "^1.18.4"
+    "cors": "^2.8.5",
+    "express": "^4.17.1"    
   },
   "devDependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "nodemon": "^1.18.4"
   }
 }
