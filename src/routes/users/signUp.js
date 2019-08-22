@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const users = require('./users')
+const users = require('./users');
+const writeFile = fs.promises.writeFile;
 
 const saveUser = user => {
     const userName = user.username;
@@ -18,19 +19,10 @@ const saveUser = user => {
 
     const filePath = path.join(folderName, `${userName}.json`);
     user.id = users.length + 1
-    user.ordersPath = ordersFolder
     users.push(user);
 
-    fs.writeFileSync(filePath, JSON.stringify(user), function (err) {
-        if (err) throw err;
-        console.log(`${userName}.json was created`);
-    })
-
-    
-    fs.writeFileSync(userListPath, JSON.stringify(users), function (err) {
-        if (err) throw err;
-        console.log(`${userName}.json was created at list`);
-    })
+    writeFile(filePath, JSON.stringify(user, null, 4))
+    writeFile(userListPath, JSON.stringify(users, null, 4))
 }
 
 const checkUserFields = user => {
@@ -53,10 +45,10 @@ const checkUserExist = user => {
     } else return true
 }
 
-const signUpRouter = (req, res) => {
+const signUpRouter = async (req, res) => {
     let body = req.body;
     if (checkUserFields(body) && checkUserExist(body)) {
-        saveUser(body);
+        await saveUser(body);
         res.status(200);
         res.json({
             status: 'success',
