@@ -27,7 +27,7 @@ const saveUser = user => {
 
 const checkUserFields = user => {
     const userName = user.username;
-    const userPhone = user.telephone.replace(/\s/g, "");
+    const userPhone = user.telephone.replace(/(\s)|([-])/g, "");
     const userPass = user.password;
     const userEmail = user.email;
     if (typeof userName === "string" &&
