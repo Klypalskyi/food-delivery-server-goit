@@ -4,11 +4,6 @@ const morgan = require('morgan')
 const router = require('./routes/router');
 const cors = require('cors');
 
-const errorHandler = (req, res, next) => {
-    res.status(400).send('No such page');
-    next();
-};
-
 const startServer = port => {
     
     app
@@ -17,7 +12,6 @@ const startServer = port => {
         .use(cors())
         .use(morgan('dev'))
         .use(router)
-        .use(errorHandler)
      
     app.listen(port);
 
