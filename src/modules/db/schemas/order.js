@@ -6,7 +6,7 @@ const ordersSchema = new Schema({
     productsList: [
         {
             product: String,
-            type: String,
+            type: {type: String},
             itemsCount: Number
         }],
     deliveryType: String,
